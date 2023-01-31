@@ -2,10 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutternew/ListDemo.dart';
+import 'package:flutternew/loginpage.dart';
 import 'package:flutternew/secondnew.dart';
 
 void main() {
-  runApp(MaterialApp(home: SplashScreen()));
+  runApp(MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.brown),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen()));
 }
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => ListDemo(),
         ),
       );
     });
@@ -30,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('SMART APP'),
-        backgroundColor: Colors.amber,
+        //backgroundColor: Colors.amber,
       ),
       body: Container(
         height: double.infinity,
