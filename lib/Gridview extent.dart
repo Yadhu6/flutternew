@@ -48,7 +48,7 @@ class Gridextent extends StatelessWidget {
       return Card(
         child: Column(
           children: [
-            Image(image: NetworkImage(ima[index]),width: 150,height: 100, ),
+            Image(image: NetworkImage(ima[index]),width: 100,height: 100,fit:BoxFit.fitWidth , ),
             Text(item[index],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
               textAlign:TextAlign.left ,),
             Padding(
