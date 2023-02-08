@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutternew/Listseperator.dart';
+import 'package:flutternew/iphones.dart';
 import 'package:flutternew/secondnew.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'Listview.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -31,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 100, right: 100, top: 20),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: TextFormField(
                 validator: (Username) {
                   if (Username!.isEmpty) {
@@ -42,12 +47,12 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    icon: Icon(Icons.add_a_photo_sharp),
+                    prefixIcon: Icon(Icons.add_a_photo_sharp),
                     hintText: 'Username'),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 100, right: 100, top: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               child: TextFormField(
                 validator: (Password) {
                   if (Password!.isEmpty ||
@@ -90,9 +95,17 @@ class _LoginPageState extends State<LoginPage> {
                       final valid = formkey.currentState!.validate();
                       if (valid) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                            builder: (context) => Iphone()));
                       } else {
-                        return null;
+                        Fluttertoast.showToast(
+                            msg: "Login failed",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
                       }
                     },
                     child: Text("Login")),

@@ -1,16 +1,21 @@
 import 'dart:async';
+//import 'dart:js';
 
-import 'package:flutter/cupertino.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutternew/ListDemo.dart';
-import 'package:flutternew/loginpage.dart';
-import 'package:flutternew/secondnew.dart';
+import 'package:flutternew/countrycap.dart';
 
 void main() {
-  runApp(MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.brown),
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen()));
+  runApp(DevicePreview (enabled: !kReleaseMode,
+      builder: (context) =>MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+  ),
+  ));
 }
 
 class SplashScreen extends StatefulWidget {
@@ -22,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => ListDemo(),
+          builder: (context) => Country(),
         ),
       );
     });
@@ -34,13 +39,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SMART APP'),
+        title: const Text('SMART APP'),
         //backgroundColor: Colors.amber,
       ),
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Colors.cyanAccent,
+        // height: double.infinity,
+        // width: double.infinity,
+        color: Colors.black,
         // decoration: const BoxDecoration(
         //   image: DecorationImage(
         //     fit: BoxFit.fill,
