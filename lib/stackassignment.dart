@@ -36,7 +36,7 @@ class Stackassign extends StatelessWidget{
              padding: const EdgeInsets.all(8.0),
              child: Container(
                decoration: BoxDecoration(
-               borderRadius: BorderRadius.circular(10),
+               borderRadius: BorderRadius.circular(8),
                  image: DecorationImage(image:NetworkImage(pic[index]),
                    fit: BoxFit.fill
                ),
@@ -44,9 +44,10 @@ class Stackassign extends StatelessWidget{
              ),
            ),
             Positioned(
-              top: 150,
-                left: 100,
-                child: Text(city[index],style: TextStyle(color: Colors.white,
+              top: 160,
+                left: 9,
+                child: Text(city[index],style: TextStyle(color: Colors.greenAccent,
+                    fontStyle: FontStyle.normal,
                     fontSize: 20,fontWeight: FontWeight.bold)))
           ],
         );

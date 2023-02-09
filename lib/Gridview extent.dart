@@ -49,10 +49,13 @@ class Gridextent extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height:100,
+              height: 100,
+            width: 100,
             decoration: BoxDecoration(
-            image: DecorationImage(image:NetworkImage(ima[index]) )
-            ,),),
+            image: DecorationImage(image:NetworkImage(ima[index]),fit: BoxFit.fitWidth
+            )
+            ,),
+            ),
             Text(item[index],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
               textAlign:TextAlign.left ,)
             ,Padding(
