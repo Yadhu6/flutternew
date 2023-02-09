@@ -48,10 +48,14 @@ class Gridextent extends StatelessWidget {
       return Card(
         child: Column(
           children: [
-            Image(image: NetworkImage(ima[index]),width: 100,height: 100,fit:BoxFit.fitWidth , ),
+            Container(
+              height:100,
+            decoration: BoxDecoration(
+            image: DecorationImage(image:NetworkImage(ima[index]) )
+            ,),),
             Text(item[index],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-              textAlign:TextAlign.left ,),
-            Padding(
+              textAlign:TextAlign.left ,)
+            ,Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text('\$${price[index]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
                   textAlign:TextAlign.start),
