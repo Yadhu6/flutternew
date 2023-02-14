@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutternew/countrycap.dart';
 
+import 'loginpage.dart';
+
 void main() {
   runApp(DevicePreview (enabled: !kReleaseMode,
       builder: (context) =>MaterialApp(
@@ -29,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => Country(),
+          builder: (context) => LoginPage(),
         ),
       );
     });
