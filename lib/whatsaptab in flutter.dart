@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutternew/whatsap%20chat%20page.dart';
+import 'package:flutternew/whatsapp%20call%20page.dart';
+import 'package:flutternew/whatsapp%20status.dart';
 
 void main() {
   runApp(DevicePreview(
@@ -81,15 +83,11 @@ class Tabflutter extends StatelessWidget {
           children: [
             Center(child: Text('Community'),),
             Chatpage(),
-            Center(child: Text('Status'),),
-            Center(child: Text('Call'),)
+            Status(),
+            Callpage(),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white70,
-          onPressed: () {},
-          child: const Icon(Icons.message_rounded, color: Colors.green,size: 30,),
-        ),
+
       ),
     );
   }
