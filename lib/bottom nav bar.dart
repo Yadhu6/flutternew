@@ -44,10 +44,10 @@ class _BottomnavState extends State<Bottomnav> {
             });
           },
           items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home,size: 30,),label: 'Home',backgroundColor: Colors.green),
-        BottomNavigationBarItem(icon: Icon(Icons.search_outlined,size: 30,),label: 'Search',backgroundColor: Colors.blue),
-        BottomNavigationBarItem(icon: Icon(Icons.add,size: 30,),label: 'New',backgroundColor: Colors.greenAccent),
-        BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_sharp,size: 30,),label: 'Camera',backgroundColor: Colors.indigoAccent),
+        BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined,size: 30,),backgroundColor: Colors.green),
+        BottomNavigationBarItem(icon: Icon(Icons.search_outlined,size: 30,),backgroundColor: Colors.blue),
+        BottomNavigationBarItem(icon: Icon(Icons.add,size: 30,),backgroundColor: Colors.greenAccent),
+        BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_sharp,size: 30,),backgroundColor: Colors.indigoAccent),
         // BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_sharp),label: 'Home'),
         // BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_sharp),label: 'Home'),
       ]),
