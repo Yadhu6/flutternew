@@ -275,7 +275,7 @@ class FarmerSliver extends StatelessWidget {
                 children: [
                   Container(
                       child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
+                          //physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
