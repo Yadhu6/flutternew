@@ -4,9 +4,8 @@ import 'dart:async';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutternew/countrycap.dart';
+import 'package:flutternew/Expansion%20tile.dart';
 
-import 'loginpage.dart';
 
 void main() {
   runApp(DevicePreview (enabled: !kReleaseMode,
@@ -31,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          builder: (context) => Expansiontiles(),
         ),
       );
     });
