@@ -4,7 +4,9 @@ import 'dart:async';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutternew/Expansion%20tile.dart';
+
+import 'Expansion project.dart';
+import 'fittedboxex.dart';
 
 
 void main() {
@@ -30,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => Expansiontiles(),
+          builder: (context) => Expro(),
         ),
       );
     });
