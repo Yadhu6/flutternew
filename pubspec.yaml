@@ -42,6 +42,9 @@ dependencies:
   introduction_screen: ^3.1.6
   lottie: ^2.2.0
   flutter_custom_clippers: ^2.1.0
+  google_fonts: ^4.0.3
+  google_maps_flutter: ^2.2.5
+  shared_preferences: ^2.0.18
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -88,10 +91,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Shantell_Sans
+      fonts:
+        - asset: assets/Font/ShantellSans-Italic-VariableFont_BNCE,INFM,SPAC,wght.ttf
+        - asset: assets/Font/ShantellSans-VariableFont_BNCE,INFM,SPAC,wght.ttf
+          weight: 700
+    - family: Roboto_Slab
+      fonts:
+        - asset: assets/Font/RobotoSlab-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
