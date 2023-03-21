@@ -1,8 +1,9 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+
+import 'UI by Company/Giftpage.dart';
 
 void main() {
   runApp(DevicePreview(
@@ -24,7 +25,7 @@ class Bottomnav extends StatefulWidget{
 
 class _BottomnavState extends State<Bottomnav> {
   List Screen=[
-   Center(child: Text('Home')),
+   Center(child: Giftpage()),
     Center(child: Text('Search')),
     Center(child: Text('New')),
     Center(child: Text('Camera')),
