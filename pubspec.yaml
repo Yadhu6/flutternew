@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.0.18
   contained_tab_bar_view:
   buttons_tabbar:
+  sqflite: ^2.2.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

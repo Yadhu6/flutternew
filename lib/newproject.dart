@@ -9,6 +9,7 @@ import 'package:flutternew/Sharedpreff/Registration%20page.dart';
 import 'Expansion project.dart';
 import 'fittedboxex.dart';
 import 'googlemaps.dart';
+import 'loginpage.dart';
 
 
 void main() {
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 2), () {
       Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => RegPage(),
+          builder: (context) => LoginPage(),
         ),
       );
     });
