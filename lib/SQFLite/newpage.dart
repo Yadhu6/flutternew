@@ -6,6 +6,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutternew/SQFLite/Registration%20page.dart';
 
+import '../Todo/Todo.dart';
+
 void main() {
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -28,7 +30,7 @@ class _SplashscreenState extends State<Splashscreen> {
     Timer(Duration(seconds: 3), () {
       Navigator.of(context as BuildContext).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => RegPage()
+          builder: (context) => Note()
         ),
       );
     });

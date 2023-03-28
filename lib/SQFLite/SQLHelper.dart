@@ -43,4 +43,6 @@ static Future<int> addNewUser(String email,String password) async{
     final data = db.rawQuery("SELECT * FROM login");
     return data;
   }
+
+
 }
