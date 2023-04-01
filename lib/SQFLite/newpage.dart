@@ -4,7 +4,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutternew/SQFLite/Registration%20page.dart';
 
 import '../Todo/Todo.dart';
 
