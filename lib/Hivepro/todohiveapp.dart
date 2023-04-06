@@ -20,6 +20,7 @@ class _Todo_appState extends State<Todo_app> {
 
   final TextEditingController titles = TextEditingController();
   final TextEditingController descriptions = TextEditingController();
+  int index = 0;
 
   //Hive class object
 
@@ -148,23 +149,24 @@ class _Todo_appState extends State<Todo_app> {
                 ListTile(
                   leading: Icon(Icons.search_outlined),
                   title: Text('Search'),
-                  trailing: Icon(Icons.arrow_forward_rounded),
                 ),
                 ListTile(
-                  leading: IconButton(onPressed: ()=> showTask(context, null), icon:Icon(Icons.add)),
+                  leading: IconButton(
+                      onPressed: () => showTask(context, null),
+                      icon: Icon(Icons.add)),
                   title: Text('Add Task'),
-                  trailing: Icon(Icons.arrow_forward_rounded),
+                  //trailing: Icon(Icons.arrow_forward_rounded),
                 ),
                 ListTile(
                   leading: Icon(Icons.account_circle),
                   title: Text('User'),
-                  trailing: Icon(Icons.arrow_forward_rounded),
+                  //trailing: Icon(Icons.arrow_forward_rounded),
                   //onTap: ,
                 ),
                 ListTile(
                   leading: Icon(Icons.settings),
                   title: Text('Settings'),
-                  trailing: Icon(Icons.arrow_forward_rounded),
+                  //trailing: Icon(Icons.arrow_forward_rounded),
                 )
               ],
             ),
@@ -200,11 +202,33 @@ class _Todo_appState extends State<Todo_app> {
       //   onPressed: () => showTask(context, null),
       //   child: Icon(Icons.add),
       // ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: IconButton(onPressed: ()=> showTask(context, null),
-           icon:Icon(Icons.add),),label: 'Add'),
-        BottomNavigationBarItem(icon: Icon(Icons.add),label: 'Add')
-      ]),
+
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index,
+          onTap: (taped_index) {
+            setState(() {
+              index = taped_index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: IconButton(
+                  onPressed: () => showTask(context, null),
+                  icon: Icon(
+                    Icons.add,
+                    color: Colors.green,
+                  ),
+                ),
+                label: 'Add'),
+            BottomNavigationBarItem(
+                icon: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.delete_rounded,
+                      color: Colors.red,
+                    )),
+            label: 'Delete')
+          ]),
     );
   }
 }
