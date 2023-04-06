@@ -2,25 +2,47 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutternew/Hivepro/LoginhiveAdaptor/Screens/Loginn.dart';
 import 'package:get/get.dart';
+import '../Databasee/DBFn.dart';
 import '../Modelclass/usermodelclass.dart';
 
 class Signuphive extends StatelessWidget {
   final mail = TextEditingController();
   final pass = TextEditingController();
 
-  void validateSignup() async {
+  void validateSignup(List<User> userlist) async {
     final mailid = mail.text.trim();
     final pswd = pass.text.trim();
+
+    bool isUserfound = false;
 
     final emailvalidation = EmailValidator.validate(mailid);
 
     if (mailid != "" && pswd != "") {
       if (emailvalidation == true) {
-        final passvalidation = checkPassword(pswd);
-        if (passvalidation == true) {
-          final user = User(mail: mailid, pass: pswd);
-        }
+        await Future.forEach(userlist, (users) {
+          if (users.mail == mailid) {
+            isUserfound = true;
+          } else {
+            isUserfound = false;
+          }
+        });
+        if (isUserfound == true) {
+          Get.snackbar("Error", 'User already registered');
+        } else {
+          final passvalidation = checkPassword(pswd);
+          if (passvalidation == true) {
+            final user = User(mail: mailid, pass: pswd);
+            await Databasee.instance.userSignup(user);
+            Get.back();
+            Get.snackbar(
+                "Success", 'Successfully registered', colorText: Colors.red);
+          }}
+        } else {
+        Get.snackbar("Error", 'Enter valid Mailid', colorText: Colors.red);
       }
+
+    }else{
+      Get.snackbar("Error", 'Please check the credentials',colorText: Colors.red);
     }
   }
 
@@ -64,8 +86,9 @@ class Signuphive extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-              onPressed: () {
-                validateSignup();
+              onPressed: ()async {
+                final userlist = await Databasee.instance.getUser();
+                validateSignup(userlist);
               },
               child: Text('SignUp')),
           TextButton(

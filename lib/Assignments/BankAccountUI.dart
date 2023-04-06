@@ -18,6 +18,11 @@ void main() {
 }
 
 class BankUI extends StatelessWidget {
+
+  var txt1=['My Account','Load eSewa','Payment','Fund Transfer','Schedule\nPayment','Scan to Pay'];
+  var icon=[Icons.account_circle_rounded,Icons.adb_rounded,BoxIcons.bxs_phone,BoxIcons.bx_transfer,
+  Icons.schedule_rounded,Icons.qr_code_2];
+  var color=[Colors.red,Colors.green,Colors.red,Colors.blue,Colors.red,Colors.purpleAccent];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,16 +126,74 @@ class BankUI extends StatelessWidget {
                   ),
                   Container(
                       height: 270,
-                      color: Colors.blue,
+                      //color: Colors.blue,
                       width: 400,
                       child: GridView.builder(
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3),
                           itemCount: 6,
                           itemBuilder: (context, index) {
-                            return Card();
+                            return Card(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: Column(
+                                  children: [
+                                    Icon(icon[index],color:color[index],size: 40,),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Text(txt1[index],style: TextStyle(fontWeight: FontWeight.bold),),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
                           }),
-                  )],
+                  ),
+                Row(
+                  children: [
+                    Icon(HeroIcons.arrow_path_rounded_square,color: Colors.orange,size: 33,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text('LAST TRANSACTIONS',style: TextStyle(fontWeight: FontWeight.bold,
+                      fontSize: 16,color: Colors.black),),
+                    )
+                  ],
+                ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0 ),
+                    child: Card(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text('CWDR/',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,
+                            color: Colors.black),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 7.0),
+                            child: Row(
+                              children: [
+                                Text('986262/62574123254',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 80.0),
+                                  child: Text('NPR.10,000.00',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,
+                                      color: Colors.black)),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 7.0,bottom: 10),
+                            child: Text('10-06-2019',style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,
+                                color: Colors.black)),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           )

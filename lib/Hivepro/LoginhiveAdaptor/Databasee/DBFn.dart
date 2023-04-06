@@ -15,4 +15,9 @@ class Databasee{
     final db = await Hive.openBox<User>('user');
     db.put(user.id, user);
   }
+// get all the registered users
+  Future<List<User>>getUser() async{
+    final db = await Hive.openBox<User>('user');
+    return db.values.toList();
+  }
 }

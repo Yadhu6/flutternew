@@ -26,31 +26,37 @@ class _Todo_appState extends State<Todo_app> {
   final mytaskbox = Hive.box('todo_box');
 
   @override
-  initState(){
+  initState() {
     super.initState();
     fetchtask();
   }
-  Future<void> createTask(Map<String, dynamic>newtask) async {
+
+  Future<void> createTask(Map<String, dynamic> newtask) async {
     await mytaskbox.add(newtask);
     fetchtask();
   }
 
   //read all data from hive
-  void fetchtask(){
-    final mytasks = mytaskbox.keys.map((key){
+  void fetchtask() {
+    final mytasks = mytaskbox.keys.map((key) {
       final value = mytaskbox.get(key);
-      return {"id": key,"title":value['title'],"description":value['description']};
+      return {
+        "id": key,
+        "title": value['title'],
+        "description": value['description']
+      };
     }).toList();
 
     setState(() {
-      tasks = mytasks.reversed.toList(); //reversed to sort in items in latest to oldest order
+      tasks = mytasks.reversed
+          .toList(); //reversed to sort in items in latest to oldest order
     });
   }
 
   //read singledata from hive used mainly in login app
-  Map<String,dynamic> readData(int key){
-     final sdata = mytaskbox.get(key);
-     return sdata;
+  Map<String, dynamic> readData(int key) {
+    final sdata = mytaskbox.get(key);
+    return sdata;
   }
 
   Future<void> updateTask(int itemkey, Map<String, dynamic> updatetask) async {
@@ -64,20 +70,20 @@ class _Todo_appState extends State<Todo_app> {
   }
 
   void showTask(BuildContext context, int? itemkey) {
-
-    if(itemkey!=null){
-      final existing_task = tasks.firstWhere((element) => element['id'] == itemkey);
+    if (itemkey != null) {
+      final existing_task =
+          tasks.firstWhere((element) => element['id'] == itemkey);
       titles.text = existing_task['title'];
       descriptions.text = existing_task['description'];
     }
     showModalBottomSheet(
-      elevation: 5,
+        elevation: 5,
         isScrollControlled: true,
         context: context,
         builder: (ctx) {
           return Container(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom+110,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 50,
               top: 15,
               left: 15,
               right: 15,
@@ -91,27 +97,31 @@ class _Todo_appState extends State<Todo_app> {
                 TextFormField(
                     controller: descriptions,
                     decoration: InputDecoration(hintText: "Description")),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: SizedBox(
-                  width: 150,
-                  child: ElevatedButton(onPressed: ()async{
-                    if(itemkey == null){
-                      createTask({'title': titles.text.trim(),
-                      'description': descriptions.text.trim()});
-                    }
-                    if(itemkey!= null){
-                      updateTask(itemkey,{
-                        'title':titles.text,
-                        'description': descriptions.text,
-                      });
-                    }
-                    titles.text = "";
-                    descriptions.text = "";
-                    Navigator.of(context).pop();
-                  }, child: Text(itemkey==null?'Create':'Update')),
-                ),
-              )
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: SizedBox(
+                    width: 150,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          if (itemkey == null) {
+                            createTask({
+                              'title': titles.text.trim(),
+                              'description': descriptions.text.trim()
+                            });
+                          }
+                          if (itemkey != null) {
+                            updateTask(itemkey, {
+                              'title': titles.text,
+                              'description': descriptions.text,
+                            });
+                          }
+                          titles.text = "";
+                          descriptions.text = "";
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(itemkey == null ? 'Create' : 'Update')),
+                  ),
+                )
               ],
             ),
           );
@@ -124,38 +134,77 @@ class _Todo_appState extends State<Todo_app> {
       appBar: AppBar(
         title: Text('ToDo'),
       ),
+      drawer: Theme(
+          data: Theme.of(context).copyWith(canvasColor: Colors.white),
+          child: Drawer(
+            child: ListView(
+              children: [
+                UserAccountsDrawerHeader(
+                  accountName: Text('ToDo '),
+                  accountEmail: Text('Actions need to complete'),
+                  currentAccountPicture:
+                      Image(image: AssetImage('assets/images/alapuzha.jpg')),
+                ),
+                ListTile(
+                  leading: Icon(Icons.search_outlined),
+                  title: Text('Search'),
+                  trailing: Icon(Icons.arrow_forward_rounded),
+                ),
+                ListTile(
+                  leading: IconButton(onPressed: ()=> showTask(context, null), icon:Icon(Icons.add)),
+                  title: Text('Add Task'),
+                  trailing: Icon(Icons.arrow_forward_rounded),
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle),
+                  title: Text('User'),
+                  trailing: Icon(Icons.arrow_forward_rounded),
+                  //onTap: ,
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  trailing: Icon(Icons.arrow_forward_rounded),
+                )
+              ],
+            ),
+          )),
       body: tasks.isEmpty
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-          itemCount: tasks.length,
-          itemBuilder: (ctx, index) {
-            final taskhive = tasks[index];
-              return Card(
-                child: ListTile(
-                  title: Text(taskhive['title']),
-                  subtitle: Text(taskhive['description']),
-                  trailing: Wrap(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            showTask(context,taskhive['id']);
-                          },
-                          icon: Icon(Icons.edit)),
-                      IconButton(
-                          onPressed: () {
-                            deleteTask(taskhive['id']);
-                          },
-                          icon: Icon(Icons.delete))
-                    ],
+              itemCount: tasks.length,
+              itemBuilder: (ctx, index) {
+                final taskhive = tasks[index];
+                return Card(
+                  child: ListTile(
+                    title: Text(taskhive['title']),
+                    subtitle: Text(taskhive['description']),
+                    trailing: Wrap(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              showTask(context, taskhive['id']);
+                            },
+                            icon: Icon(Icons.edit)),
+                        IconButton(
+                            onPressed: () {
+                              deleteTask(taskhive['id']);
+                            },
+                            icon: Icon(Icons.delete))
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showTask(context, null),
-        child: Icon(Icons.add),
-      ),
+                );
+              }),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => showTask(context, null),
+      //   child: Icon(Icons.add),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: IconButton(onPressed: ()=> showTask(context, null),
+           icon:Icon(Icons.add),),label: 'Add'),
+        BottomNavigationBarItem(icon: Icon(Icons.add),label: 'Add')
+      ]),
     );
   }
-
 }
