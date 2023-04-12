@@ -106,7 +106,8 @@ class _FireHomeState extends State<FireHome> {
       try{
         //upload to firebase
         await storage.ref(filename).putFile(imagefile,SettableMetadata(
-          customMetadata: {'uploaded by':" ",
+          customMetadata: {'uploaded by':" Yadhu",
+
 
           }
         ));
